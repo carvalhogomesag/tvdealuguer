@@ -1,0 +1,24 @@
+name: Deploy to Firebase Hosting on push to main
+'on':
+  push:
+    branches:
+      - main
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4 # <<< NOVO PASSO
+        with:
+          node-version: '20' # <<< VERSÃO NODE
+
+      # Instala o Firebase Tools globalmente
+      - name: Install Firebase Tools
+        run: npm install -g firebase-tools
+
+      # Faz o Deploy
+      - name: Deploy to Firebase Hosting
+        run: firebase deploy --only hosting --token ${{ secrets.FIREBASE_TOKEN }}
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_TVDEALUGUER }}
+          FIREBASE_PROJECT_ID: tvdealuguer
