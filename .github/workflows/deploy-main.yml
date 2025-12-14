@@ -15,9 +15,10 @@ jobs:
             - name: Install Firebase Tools
               run: npm install -g firebase-tools
               
-            # === CORREÇÃO FINAL AQUI (apenas o --site para -site) ===
+            # === COMANDO FINAL E CORRETO ===
             - name: Deploy to Firebase Hosting
-              # Usa hífen simples para o site
-              run: firebase deploy --only hosting --project tvdealuguer -site tvdealuguer 
+              # Usa apenas o Project ID, o que deve ser suficiente,
+              # já que o Site ID é o mesmo: tvdealuguer
+              run: firebase deploy --only hosting --project tvdealuguer 
               env:
                 FIREBASE_TOKEN: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_TVDEALUGUER }}
