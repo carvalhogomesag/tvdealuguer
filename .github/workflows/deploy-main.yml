@@ -8,17 +8,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4 # <<< NOVO PASSO
+      - uses: actions/setup-node@v4
         with:
-          node-version: '20' # <<< VERSÃO NODE
-
-      # Instala o Firebase Tools globalmente
+          node-version: '20'
+      
       - name: Install Firebase Tools
         run: npm install -g firebase-tools
-
-      # Faz o Deploy
+        
+      # === AJUSTE CRÍTICO AQUI ===
       - name: Deploy to Firebase Hosting
-        run: firebase deploy --only hosting --token ${{ secrets.FIREBASE_TOKEN }}
+        run: firebase deploy --only hosting --project tvdealuguer # Comando Limpo
         env:
+          # Usamos o token secreto que o Firebase CLI adicionou ao GitHub
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_TVDEALUGUER }}
-          FIREBASE_PROJECT_ID: tvdealuguer
