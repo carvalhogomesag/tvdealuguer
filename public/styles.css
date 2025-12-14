@@ -229,91 +229,119 @@ footer {
 }
 
 /* ==================================== */
-/* 2. MODAL DE CONTACTO (FORMULÁRIO) */
+/* 2. MODAL DE CONTACTO (FORMULÁRIO) - CORRIGIDO E PROFISSIONAL */
 /* ==================================== */
 
 /* O Fundo escuro do Modal */
 .modal {
     display: none; /* Escondido por padrão */
     position: fixed; 
-    z-index: 2000; /* Acima de todos os outros elementos */
+    z-index: 2000; 
     left: 0;
     top: 0;
     width: 100%; 
     height: 100%; 
     overflow: auto; 
     background-color: rgba(0,0,0,0.7); 
+    display: flex; /* Adiciona Flexbox para centrar facilmente */
+    align-items: center;
+    justify-content: center;
 }
 
 /* O Conteúdo do Modal (janela branca) */
 .modal-content {
     background-color: #fefefe;
-    margin: 10% auto; 
-    padding: 25px; /* Mais padding */
+    /* Removido o 'margin: 10% auto' */
+    padding: 30px; /* Mais padding para um visual mais clean */
     border: 1px solid #888;
-    width: 80%; 
-    max-width: 500px;
-    border-radius: 8px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.4); /* Sombra mais forte */
+    width: 90%; 
+    max-width: 550px; /* Levemente maior */
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2); /* Sombra suave */
+    transform: scale(0.95); /* Animação simples de entrada */
+    transition: transform 0.3s ease-out;
+}
+
+/* Estado de abertura do Modal (melhor UX visual) */
+.modal[style*="display: block"] .modal-content {
+    transform: scale(1);
 }
 
 /* Botão de Fechar (o X) */
 .close-btn {
     color: #aaa;
     float: right;
-    font-size: 32px; /* Maior */
+    font-size: 36px; /* Maior e mais fácil de clicar */
     font-weight: bold;
+    line-height: 1;
 }
 
 .close-btn:hover,
 .close-btn:focus {
-    color: var(--accent-color);
+    color: var(--primary-color);
     text-decoration: none;
     cursor: pointer;
 }
 
 /* Estilos para o Formulário dentro do Modal */
-#carInterestForm label {
-    display: block;
-    margin-top: 15px; /* Mais espaço */
-    font-weight: 600;
-    color: #333;
+#carInterestForm {
+    margin-top: 15px;
 }
 
 #carInterestForm h2 {
     color: var(--primary-color);
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 5px;
+}
+
+#carInterestForm label {
+    display: block;
+    margin-top: 15px;
+    font-weight: 600;
+    color: #555;
+    font-size: 0.9em;
 }
 
 #carInterestForm input[type="text"],
 #carInterestForm input[type="email"],
 #carInterestForm input[type="tel"],
 #carInterestForm textarea {
-    width: 100%;
-    padding: 12px; /* Maior padding interno */
-    margin-top: 5px;
+    width: 100%; /* Garantindo que ocupam a largura total */
+    padding: 12px;
+    margin-top: 8px;
     margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    border: 1px solid #ddd;
+    border-radius: 6px; /* Bordas mais suaves */
     box-sizing: border-box; 
     font-size: 1em;
+    transition: border-color 0.3s;
+}
+
+#carInterestForm input:focus,
+#carInterestForm textarea:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
 }
 
 #carInterestForm textarea {
-    resize: vertical; /* Permite ao usuário ajustar a altura */
+    resize: vertical;
 }
 
 #carInterestForm button[type="submit"] {
-    background-color: var(--primary-color); /* Usa o Azul principal */
+    background-color: var(--primary-color); 
     color: white;
-    padding: 12px 20px;
+    padding: 15px 20px; /* Botão maior */
     border: none;
-    border-radius: 4px;
+    border-radius: 6px;
     cursor: pointer;
     width: 100%;
-    font-weight: 600;
-    margin-top: 20px; /* Mais espaço */
+    font-weight: 700;
+    margin-top: 30px; /* Mais espaço antes do botão */
     font-size: 1.1em;
+    transition: background-color 0.3s;
 }
 
 #carInterestForm button[type="submit"]:hover {
