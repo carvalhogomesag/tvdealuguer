@@ -156,3 +156,111 @@ main {
         margin: 5px 10px;
     }
 }
+
+/* ==================================== */
+/* 1. WHATSAPP FLUTUANTE */
+/* ==================================== */
+.whatsapp-float {
+    /* Posição Fixa no canto inferior direito */
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 40px;
+    right: 40px;
+    
+    /* Estilo do Botão */
+    background-color: #25d366; /* Verde WhatsApp */
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 30px;
+    line-height: 60px; /* Centraliza o ícone verticalmente */
+    box-shadow: 2px 2px 3px #999;
+    z-index: 1000; /* Garante que está no topo */
+    transition: transform 0.3s;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+}
+
+/* ==================================== */
+/* 2. MODAL DE CONTACTO */
+/* ==================================== */
+
+/* O Fundo escuro do Modal */
+.modal {
+    display: none; /* Escondido por padrão */
+    position: fixed; 
+    z-index: 2000; /* Acima de todos os outros elementos */
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.7); 
+}
+
+/* O Conteúdo do Modal (janela branca) */
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto; /* 10% do topo e centralizado */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Pode ajustar conforme o seu layout */
+    max-width: 500px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+/* Botão de Fechar (o X) */
+.close-btn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Estilos para o Formulário dentro do Modal */
+#carInterestForm label {
+    display: block;
+    margin-top: 10px;
+    font-weight: 600;
+    color: #333;
+}
+
+#carInterestForm input[type="text"],
+#carInterestForm input[type="email"],
+#carInterestForm input[type="tel"],
+#carInterestForm textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Garante que padding não aumenta a largura total */
+}
+
+#carInterestForm button[type="submit"] {
+    background-color: #007bff; /* Cor Primária */
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+#carInterestForm button[type="submit"]:hover {
+    background-color: #0056b3;
+}
