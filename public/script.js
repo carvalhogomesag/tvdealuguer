@@ -19,20 +19,15 @@ const db = getFirestore(app);
 const carListingsContainer = document.getElementById('car-listings');
 
 
-// ** PASSO 3: FUNÇÃO PARA GERAR O CARD HTML (LINK WHATSAPP CORRIGIDO) **
+// ** PASSO 3: FUNÇÃO PARA GERAR O CARD HTML (WhatsApp Corrigido) **
 function createCarCard(car) {
     const isAvailable = car.disponivel !== false; 
     const availabilityClass = isAvailable ? '' : 'indisponivel';
     
     // --- LÓGICA DO WHATSAPP ---
     const carName = `${car.marca} ${car.modelo}`;
-    // Número do WhatsApp: 914044836 (com código de Portugal 351)
     const whatsappNumber = "351914044836"; 
-    
-    // Mensagem pré-preenchida para o WhatsApp
     const prefilledMessage = encodeURIComponent(`Olá, tenho interesse no aluguer do ${carName} que está anunciado no site. Poderiam me dar mais detalhes?`);
-    
-    // Link de contacto direto para o WhatsApp
     const whatsappLink = `https://wa.me/${whatsappNumber}?text=${prefilledMessage}`;
     // -------------------------
     
@@ -67,7 +62,7 @@ function createCarCard(car) {
 
 // ** PASSO 4: FUNÇÃO PARA CARREGAR DADOS DO FIRESTORE **
 async function loadCars() {
-    carListingsContainer.innerHTML = ''; // Limpa o carregador
+    carListingsContainer.innerHTML = ''; 
 
     try {
         const q = query(

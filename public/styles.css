@@ -19,6 +19,21 @@ body {
     line-height: 1.6;
 }
 
+/* NOVO: Estilo para o aviso de construção */
+.construction-alert {
+    background-color: var(--accent-color);
+    color: var(--text-color);
+    text-align: center;
+    padding: 10px 5%;
+    font-weight: 600;
+    font-size: 0.95em;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.construction-alert i {
+    color: var(--primary-color);
+}
+
+
 header {
     background-color: var(--primary-color);
     color: white;
@@ -39,8 +54,24 @@ nav a {
     text-decoration: none;
     margin-left: 20px;
     font-weight: 600;
-    transition: color 0.3s;
+    transition: opacity 0.3s;
 }
+
+/* NOVO: Estilo para o botão de WhatsApp no Header */
+.whatsapp-header-btn {
+    background-color: var(--whatsapp-color);
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-weight: 700 !important;
+    margin-left: 25px !important;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.whatsapp-header-btn:hover {
+    background-color: #128C7E;
+    transform: translateY(-2px);
+}
+
 
 main {
     padding: 20px 5%;
@@ -151,7 +182,7 @@ main {
     opacity: 1;
 }
 
-/* NOVO ESTILO: BOTÃO WHATSAPP PROFISSIONAL */
+/* ESTILO: BOTÃO WHATSAPP PROFISSIONAL (Dentro do Card) */
 .contact-button.whatsapp-button {
     display: block;
     width: 100%;
@@ -159,7 +190,7 @@ main {
     margin-top: 15px;
     background-color: var(--whatsapp-color); /* Verde WhatsApp */
     color: white; 
-    text-decoration: none; /* Como agora é um <a> */
+    text-decoration: none; 
     text-align: center;
     font-size: 1.1em;
     font-weight: 700;
@@ -170,7 +201,7 @@ main {
 }
 
 .contact-button.whatsapp-button:hover {
-    background-color: #128C7E; /* Verde mais escuro no hover */
+    background-color: #128C7E; 
 }
 
 .contact-button.whatsapp-button i {
@@ -190,14 +221,22 @@ footer {
 
 
 /* Responsividade básica */
-@media (max-width: 600px) {
+@media (max-width: 768px) {
     .hero h1 {
         font-size: 1.8em;
     }
     header {
         flex-direction: column;
+        align-items: flex-start;
+    }
+    nav {
+        margin-top: 10px;
     }
     nav a {
-        margin: 5px 10px;
+        margin: 5px 10px 5px 0;
+    }
+    /* Ajuste para que o botão do header caiba bem */
+    .whatsapp-header-btn {
+        margin-left: 0 !important;
     }
 }
