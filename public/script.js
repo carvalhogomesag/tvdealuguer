@@ -20,13 +20,18 @@ const db = getFirestore(app);
 const carListingsContainer = document.getElementById('car-listings');
 
 
-// ** PASSO 3: FUNÇÃO PARA GERAR O CARD HTML (CORRIGIDA) **
+// ** PASSO 3: FUNÇÃO PARA GERAR O CARD HTML (WhatsApp Integrado) **
 function createCarCard(car) {
     const isAvailable = car.disponivel !== false; 
     const availabilityClass = isAvailable ? '' : 'indisponivel';
     
-    // Referência única para o carro que será passada ao formulário (ex: Renault Clio - 150€/Semana)
-    const carReference = `${car.marca} ${car.modelo} - ${car.precoSemana}€/Semana`;
+    // Referência do carro para a mensagem do WhatsApp
+    const carName = `${car.marca} ${car.modelo}`;
+    const whatsappNumber = "351914044836"; // Seu número em Portugal
+    const prefilledMessage = encodeURIComponent(`Olá, tenho interesse no aluguer do ${carName} que está anunciado no site. Poderiam me dar mais detalhes?`);
+    
+    // Link de contacto direto para o WhatsApp
+    const whatsappLink = `https://wa.me/${whatsappNumber}?text=${prefilledMessage}`;
     
     const getFeatureIcon = (value) => value 
         ? '<i class="fas fa-check-circle" style="color:green;"></i> Sim' 
@@ -42,15 +47,16 @@ function createCarCard(car) {
     `;
 
     return `
-        <div class="car-card ${availabilityClass}"
-             data-car-name="${carReference}"> 
-             <img src="${car.fotoUrl || 'placeholder.jpg'}" alt="${car.marca} ${car.modelo} TVDE">
+        <div class="car-card ${availabilityClass}">
+            <img src="${car.fotoUrl || 'placeholder.jpg'}" alt="${car.marca} ${car.modelo} TVDE">
             <div class="car-info">
                 <h3>${car.marca} ${car.modelo}</h3>
                 <span class="price">${car.precoSemana}€ <small>por semana</small></span>
                 ${featuresList}
                 
-                <button class="contact-button" onclick="openContactModal(this.parentNode.parentNode)">Tenho Interesse</button>
+                <a href="${whatsappLink}" target="_blank" class="contact-button whatsapp-button">
+                    <i class="fab fa-whatsapp"></i> Falar com a TVDE Aluguer
+                </a>
             </div>
         </div>
     `;

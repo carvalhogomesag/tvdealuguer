@@ -39,68 +39,6 @@
         <p>&copy; 2025 TVDE Aluguer. Soluções para motoristas em Portugal.</p>
     </footer>
 
-    <div id="contactModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn">&times;</span>
-            <h2>Interesse em: <span id="carTitle"></span></h2>
-            
-            <form id="carInterestForm" action="SEU_LINK_DO_FORM_AQUI" method="POST">
-                
-                <input type="hidden" id="carReference" name="Carro-de-Interesse" value="">
-                
-                <label for="clientName">Nome Completo:</label>
-                <input type="text" id="clientName" name="Nome" required>
-
-                <label for="clientEmail">Email:</label>
-                <input type="email" id="clientEmail" name="Email" required>
-
-                <label for="clientPhone">Telefone:</label>
-                <input type="tel" id="clientPhone" name="Telefone" required>
-                
-                <label for="clientMessage">Mensagem:</label>
-                <textarea id="clientMessage" name="Mensagem" rows="4"></textarea>
-
-                <button type="submit">Enviar Pedido</button>
-            </form>
-        </div>
-    </div>
-
-    <a href="https://wa.me/SEU_NUMERO_AQUI?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20os%20serviços%20de%20aluguer." 
-       class="whatsapp-float" 
-       target="_blank">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-    
-    <script>
-        /**
-         * Abre o modal e pré-preenche o nome do carro com base no atributo data-car-name do elemento clicado.
-         * @param {HTMLElement} cardElement - O elemento pai (car-card) que contém os dados do carro.
-         */
-        function openContactModal(cardElement) {
-            // Assume que a referência do carro está no atributo 'data-car-name' do elemento clicado
-            const carName = cardElement.getAttribute('data-car-name');
-            const modal = document.getElementById('contactModal');
-            
-            // 1. Abre o Modal
-            modal.style.display = 'block';
-
-            // 2. Pré-preenche os campos
-            document.getElementById('carTitle').textContent = carName;
-            document.getElementById('carReference').value = carName;
-        }
-
-        // Lógica para fechar o modal ao clicar no X ou fora da janela
-        document.querySelector('.close-btn').onclick = function() {
-            document.getElementById('contactModal').style.display = 'none';
-        }
-
-        window.onclick = function(event) {
-            if (event.target == document.getElementById('contactModal')) {
-                document.getElementById('contactModal').style.display = 'none';
-            }
-        }
-    </script>
-
     <script type="module" src="script.js"></script>
 </body>
 </html>
