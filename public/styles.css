@@ -1,0 +1,158 @@
+:root {
+    --primary-color: #007bff; /* Azul forte, TVDE/Mobilidade */
+    --accent-color: #ffc107; /* Amarelo (Bolt) para destaque */
+    --background-color: #f4f7f6;
+    --text-color: #333;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 15px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.logo {
+    font-weight: 800;
+    font-size: 1.5em;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+main {
+    padding: 20px 5%;
+}
+
+.hero {
+    text-align: center;
+    padding: 60px 0;
+    margin-bottom: 40px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+.hero h1 {
+    font-size: 2.5em;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+/* Estilo para a listagem dos carros */
+.car-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.car-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+}
+
+.car-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.car-info {
+    padding: 20px;
+}
+
+.car-info h3 {
+    color: var(--text-color);
+    margin-bottom: 5px;
+}
+
+.price {
+    font-size: 2em;
+    color: var(--primary-color);
+    font-weight: 800;
+    margin-top: 10px;
+    display: block;
+}
+
+.price small {
+    font-size: 0.5em;
+    font-weight: 400;
+    color: #666;
+}
+
+.features {
+    list-style: none;
+    padding: 10px 0;
+    border-top: 1px solid #eee;
+    margin-top: 15px;
+}
+
+.features li {
+    padding: 5px 0;
+    font-size: 0.9em;
+}
+
+.features i {
+    color: var(--primary-color);
+    margin-right: 8px;
+}
+
+/* Estilo para carro indisponível */
+.car-card.indisponivel {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.indisponivel::after {
+    content: "INDISPONÍVEL";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-15deg);
+    background: #dc3545;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1.5em;
+    font-weight: 800;
+    box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    opacity: 1;
+}
+
+/* Responsividade básica */
+@media (max-width: 600px) {
+    .hero h1 {
+        font-size: 1.8em;
+    }
+    header {
+        flex-direction: column;
+    }
+    nav a {
+        margin: 5px 10px;
+    }
+}

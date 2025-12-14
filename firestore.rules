@@ -1,0 +1,16 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Permite a leitura pública (read) da coleção de viaturas
+    match /vehicles/{document} {
+      allow read: if true;
+      allow write: if false; 
+    }
+
+    // Bloqueia qualquer outra coisa
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
