@@ -1,5 +1,4 @@
 // ** PASSO 1: IMPORTS (Sintaxe Moderna/Módulos) **
-// Importa as funções necessárias para inicialização e Firestore
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
 import { getFirestore, collection, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
 
@@ -20,18 +19,22 @@ const db = getFirestore(app);
 const carListingsContainer = document.getElementById('car-listings');
 
 
-// ** PASSO 3: FUNÇÃO PARA GERAR O CARD HTML (WhatsApp Integrado) **
+// ** PASSO 3: FUNÇÃO PARA GERAR O CARD HTML (LINK WHATSAPP CORRIGIDO) **
 function createCarCard(car) {
     const isAvailable = car.disponivel !== false; 
     const availabilityClass = isAvailable ? '' : 'indisponivel';
     
-    // Referência do carro para a mensagem do WhatsApp
+    // --- LÓGICA DO WHATSAPP ---
     const carName = `${car.marca} ${car.modelo}`;
-    const whatsappNumber = "351914044836"; // Seu número em Portugal
+    // Número do WhatsApp: 914044836 (com código de Portugal 351)
+    const whatsappNumber = "351914044836"; 
+    
+    // Mensagem pré-preenchida para o WhatsApp
     const prefilledMessage = encodeURIComponent(`Olá, tenho interesse no aluguer do ${carName} que está anunciado no site. Poderiam me dar mais detalhes?`);
     
     // Link de contacto direto para o WhatsApp
     const whatsappLink = `https://wa.me/${whatsappNumber}?text=${prefilledMessage}`;
+    // -------------------------
     
     const getFeatureIcon = (value) => value 
         ? '<i class="fas fa-check-circle" style="color:green;"></i> Sim' 
@@ -67,14 +70,12 @@ async function loadCars() {
     carListingsContainer.innerHTML = ''; // Limpa o carregador
 
     try {
-        // Cria a query para buscar e ordenar os veículos
         const q = query(
             collection(db, "vehicles"),
             orderBy("disponivel", "desc"), 
             orderBy("marca", "asc")
         );
         
-        // Executa a busca
         const querySnapshot = await getDocs(q);
 
         if (querySnapshot.empty) {
@@ -82,7 +83,6 @@ async function loadCars() {
             return;
         }
         
-        // Itera sobre os resultados e constrói o HTML
         querySnapshot.forEach((doc) => {
             const carData = doc.data();
             const carHtml = createCarCard(carData);
