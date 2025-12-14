@@ -72,6 +72,10 @@
     </a>
     
     <script>
+        /**
+         * Abre o modal e pré-preenche o nome do carro com base no atributo data-car-name do elemento clicado.
+         * @param {HTMLElement} cardElement - O elemento pai (car-card) que contém os dados do carro.
+         */
         function openContactModal(cardElement) {
             // Assume que a referência do carro está no atributo 'data-car-name' do elemento clicado
             const carName = cardElement.getAttribute('data-car-name');

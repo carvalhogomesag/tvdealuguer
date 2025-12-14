@@ -67,6 +67,7 @@ main {
     gap: 30px;
 }
 
+/* MELHORIA 1: Efeito de Hover e Cursor */
 .car-card {
     background: white;
     border-radius: 10px;
@@ -74,6 +75,13 @@ main {
     overflow: hidden;
     transition: transform 0.3s, box-shadow 0.3s;
     position: relative;
+    cursor: pointer; /* Indica que o card é clicável */
+}
+
+/* Efeito de destaque ao passar o mouse */
+.car-card:hover {
+    transform: translateY(-5px); /* Levanta o card */
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
 
 .car-card img {
@@ -144,6 +152,37 @@ main {
     opacity: 1;
 }
 
+/* MELHORIA 2: Estilo para o botão de contacto do carro (Tenho Interesse) */
+.contact-button {
+    display: block;
+    width: 100%;
+    padding: 12px 0;
+    margin-top: 15px;
+    background-color: var(--accent-color); /* Usa o Amarelo/Bolt para destaque */
+    color: var(--text-color);
+    font-size: 1.1em;
+    font-weight: 800;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.contact-button:hover {
+    background-color: #ffda6a; /* Um pouco mais claro no hover */
+}
+
+
+footer {
+    text-align: center;
+    padding: 20px 5%;
+    margin-top: 40px;
+    background-color: var(--text-color);
+    color: #ccc;
+    font-size: 0.9em;
+}
+
+
 /* Responsividade básica */
 @media (max-width: 600px) {
     .hero h1 {
@@ -154,6 +193,11 @@ main {
     }
     nav a {
         margin: 5px 10px;
+    }
+    /* Ajuste para o Modal em telas pequenas */
+    .modal-content {
+        margin: 5% auto;
+        width: 95%;
     }
 }
 
@@ -185,7 +229,7 @@ main {
 }
 
 /* ==================================== */
-/* 2. MODAL DE CONTACTO */
+/* 2. MODAL DE CONTACTO (FORMULÁRIO) */
 /* ==================================== */
 
 /* O Fundo escuro do Modal */
@@ -204,26 +248,26 @@ main {
 /* O Conteúdo do Modal (janela branca) */
 .modal-content {
     background-color: #fefefe;
-    margin: 10% auto; /* 10% do topo e centralizado */
-    padding: 20px;
+    margin: 10% auto; 
+    padding: 25px; /* Mais padding */
     border: 1px solid #888;
-    width: 80%; /* Pode ajustar conforme o seu layout */
+    width: 80%; 
     max-width: 500px;
     border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.4); /* Sombra mais forte */
 }
 
 /* Botão de Fechar (o X) */
 .close-btn {
     color: #aaa;
     float: right;
-    font-size: 28px;
+    font-size: 32px; /* Maior */
     font-weight: bold;
 }
 
 .close-btn:hover,
 .close-btn:focus {
-    color: #000;
+    color: var(--accent-color);
     text-decoration: none;
     cursor: pointer;
 }
@@ -231,9 +275,14 @@ main {
 /* Estilos para o Formulário dentro do Modal */
 #carInterestForm label {
     display: block;
-    margin-top: 10px;
+    margin-top: 15px; /* Mais espaço */
     font-weight: 600;
     color: #333;
+}
+
+#carInterestForm h2 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
 }
 
 #carInterestForm input[type="text"],
@@ -241,16 +290,21 @@ main {
 #carInterestForm input[type="tel"],
 #carInterestForm textarea {
     width: 100%;
-    padding: 10px;
+    padding: 12px; /* Maior padding interno */
     margin-top: 5px;
     margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    box-sizing: border-box; /* Garante que padding não aumenta a largura total */
+    box-sizing: border-box; 
+    font-size: 1em;
+}
+
+#carInterestForm textarea {
+    resize: vertical; /* Permite ao usuário ajustar a altura */
 }
 
 #carInterestForm button[type="submit"] {
-    background-color: #007bff; /* Cor Primária */
+    background-color: var(--primary-color); /* Usa o Azul principal */
     color: white;
     padding: 12px 20px;
     border: none;
@@ -258,7 +312,8 @@ main {
     cursor: pointer;
     width: 100%;
     font-weight: 600;
-    margin-top: 10px;
+    margin-top: 20px; /* Mais espaço */
+    font-size: 1.1em;
 }
 
 #carInterestForm button[type="submit"]:hover {
