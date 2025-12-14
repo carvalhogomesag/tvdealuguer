@@ -8,16 +8,29 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      # 1. AUTENTICAÇÃO SEGURA: Transfere o JSON do segredo para um ficheiro local
+      #    e define a variável GOOGLE_APPLICATION_CREDENTIALS
+      - name: Authenticate to Google Cloud (service account)
+        run: |
+          # Cria um ficheiro temporário com a chave JSON do Service Account
+          printf '%s' "${{ secrets.FIREBASE_SERVICE_ACCOUNT_TVDEALUGUER }}" > $GITHUB_WORKSPACE/firebase-key.json
+          # Define a variavel de ambiente para o Firebase Tools usar o ficheiro
+          echo "GOOGLE_APPLICATION_CREDENTIALS=$GITHUB_WORKSPACE/firebase-key.json" >> $GITHUB_ENV
+
+      # 2. CONFIGURAÇÃO DO AMBIENTE NODE
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      
+
+      # 3. INSTALAR FERRAMENTAS
       - name: Install Firebase Tools
         run: npm install -g firebase-tools
         
-      # === COMANDO DEFINITIVO ===
-      # Removemos o --project e confiamos no token/variavel de ambiente para autenticar
+      # 4. DEPLOY FINAL
       - name: Deploy to Firebase Hosting
-        run: firebase deploy --only hosting
-        env:
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_TVDEALUGUER }}
+        # Usamos o --project para dizer para qual projeto o deploy deve ir.
+        # A autenticação é feita pela GOOGLE_APPLICATION_CREDENTIALS.
+        run: firebase deploy --only hosting --project tvdealuguer
+        
+# Nota: Não precisamos mais da secção 'env: FIREBASE_TOKEN...'
